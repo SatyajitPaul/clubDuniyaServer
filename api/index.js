@@ -1,6 +1,8 @@
+import { createServer } from "http";
 import { Server } from "socket.io";
 
-const io = new Server(3000, { 
+const httpServer = createServer();
+const io = new Server(httpServer, { 
     cors: {
         origin: "*",
       }
@@ -17,3 +19,4 @@ io.on("connection", (socket) => {
         io.sockets.emit("numberOfClients", {numberOfClients: numberOfClients});
     })
 });
+httpServer.listen(3000);
