@@ -1,7 +1,10 @@
 import { createServer } from "http";
 import { Server } from "socket.io";
 
-const httpServer = createServer();
+const httpServer = createServer((req, res) => {
+    res.writeHead(200, { "Content-Type": "text/plain" });
+    res.end("Hello World!");
+});
 const io = new Server(httpServer, { 
     cors: {
         origin: "*",
